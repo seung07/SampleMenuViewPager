@@ -1,0 +1,46 @@
+package org.techtown.samplemenuviewpager;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
+
+public class Fragment2 extends Fragment {
+    private static final String TAG = "Fragment2";
+
+    FragmentCallback callback;
+
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof FragmentCallback) {
+            callback = (FragmentCallback) context;
+        } else {
+            Log.d(TAG, "Activity is not FragmentCallback.");
+        }
+    }
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment2, container, false);
+
+        Button button1 = rootView.findViewById(R.id.button1);
+        button1.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                callback.onFragmentSelected(2, null);
+            }
+
+        });
+
+
+        return rootView;
+    }
+
+
+}
